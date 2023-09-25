@@ -1,6 +1,6 @@
 @extends('frontend.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Deposit')
 
 @section('content')
   <section>
@@ -9,40 +9,36 @@
             <div class="col-md-12">
 
                 <div class="title my-5">
-                    <h3>Hi, <span class="text-success">Mr./Mrs. {{ auth()->user()->name }}</span> Welcome to Dashboard</h3>
+                    <h3>All deposit transactions</h3>
                 </div>
 
                 <div class="row">
                   <div class="col-md-9">
 
-                    <div class="transactions-area">
-                      <p class="fw-bold">Transactions</p>
+                    <div class="transactions-area my-5">
+                      <p class="fw-bold">Deposit</p>
                       <hr/>
 
                       <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">To Account</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Fee</th>
-                            <th scope="col">Transaction Type</th>
                             <th scope="col">Date</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @forelse($transactions as $key => $transaction)
+                          @forelse($deposits as $key => $deposit)
                           <tr>
                             <th scope="row">{{ $key + 1 }}</th>
-                            <td>{{ $transaction->user_id }}</td>
-                            <td>৳{{ $transaction->amount }}</td>
-                            <td>৳{{ $transaction->fee }}</td>
-                            <td>{{ $transaction->transaction_type }}</td>
-                            <td>{{ date('d M y h:i A', strtotime($transaction->date)) }}</td>
+                            <td>৳{{ $deposit->amount }}</td>
+                            <td>৳{{ $deposit->fee }}</td>
+                            <td>{{ date('d M y h:i A', strtotime($deposit->date)) }}</td>
                           </tr>
                           @empty 
                           <tr>
-                            <td class="text-center" colspan="6">No transactions found!</td>
+                            <td class="text-center" colspan="4">No deposit found!</td>
                           </tr>
                           @endforelse 
 
@@ -50,7 +46,7 @@
                       </table>
 
                       <div class="paginate my-3">
-                        {{ $transactions->links() }}
+                        {{ $deposits->links() }}
                       </div>
                     </div><!--End Transaction Area-->
 

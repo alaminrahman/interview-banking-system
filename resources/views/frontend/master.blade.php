@@ -26,27 +26,38 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.openAccount') }}">Open Account</a>
             </li>
-            
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.depositForm') }}">Deposit</a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.login') }}">Login</a>
             </li>
             @endguest
 
             @auth('web')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Profile
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">All Transactions</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.deposit') }}">All Deposits</a></li>
+                    <li><a class="dropdown-item" href="{{ route('user.withdraw.index') }}">Withdraw</a></li>
                 </ul>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.logout') }}">Logout</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="" class="nav-link"> <span class="badge bg-secondary">Balance ৳{{ auth()->user()->balance }}</span></a>
             </li>
             @endauth
            
